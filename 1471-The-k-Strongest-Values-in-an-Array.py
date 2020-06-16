@@ -16,3 +16,4 @@ class Solution:
             else:
                 ret.append(arr[left])
                 left+=1
+        return ret
