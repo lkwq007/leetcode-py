@@ -1,0 +1,15 @@
+{
+  "name": "leetcode-status",
+  "version": "1.0.0",
+  "description": "leetcode status badge generator",
+  "main": "badge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lnyan",
+  "license": "ISC",
+  "dependencies": {
+    "badge-maker": "^3.1.0",
+    "got": "^11.3.0"
+  }
+}
