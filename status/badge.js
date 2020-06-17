@@ -7,6 +7,15 @@ const { info } = require("console");
 const problems_api = "https://leetcode.com/api/problems/all/";
 const source_dir = "./../";
 
+async function gen_badge(format, filename) {
+  try {
+    let svg = makeBadge({ style: "flat", ...format });
+    await fsPromise.writeFile(filename, svg);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 (async () => {
   const body = await got(problems_api, {
     headers: {
@@ -40,4 +49,21 @@ const source_dir = "./../";
     }
   });
   console.log(status);
+  let total=status["level_fin"][1]+status["level_fin"][2]+status["level_fin"][3];
+  await gen_badge(
+    { label: "solved", message: `${total}/${problems.length}`, labelColor: "#555", color: "#337ab7" },
+    "solved.svg"
+  );
+  await gen_badge(
+    { label: "easy", message: `${status["level_fin"][1]}`, labelColor: "#555", color: "#5cb85c" },
+    "easy.svg"
+  );
+  await gen_badge(
+    { label: "medium", message: `${status["level_fin"][2]}`, labelColor: "#555", color: "#f0ad4e" },
+    "medium.svg"
+  );
+  await gen_badge(
+    { label: "hard", message: `${status["level_fin"][3]}`, labelColor: "#555", color: "#d9534f" },
+    "hard.svg"
+  );
 })();
