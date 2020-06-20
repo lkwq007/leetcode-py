@@ -11,7 +11,7 @@ class Solution:
             if matrix[middle][0]<target:
                 left=middle+1
             elif matrix[middle][0]>target:
-                right=middle
+                right=middle-1
             else:
                 return True
         row=left
@@ -22,7 +22,7 @@ class Solution:
             if matrix[row][middle]<target:
                 left=middle+1
             elif matrix[row][middle]>target:
-                right=middle
+                right=middle-1
             else:
                 return True
         return matrix[row][left]==target
