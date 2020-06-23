@@ -30,5 +30,27 @@ class Solution:
         dfs(root,0)
         return 2**(h+1)-1-2**h+self.cnt
 
+
+class Solution:
+    def countNodes(self, root: TreeNode) -> int:
+        # complete tree
+        def height(node):
+            if node is None:
+                return 0
+            return 1+height(node.left)
+        def count(node):
+            if node is None:
+                return 0
+            h=height(node)
+            left=height(node.left)
+            right=height(node.right)
+            if left==right:
+                return (1<<left)+count(node.right)
+            else:
+                return (1<<right)+count(node.left)
+        return count(root)
+
+        
+
 x=Solution()
 print(x.countNodes(TreeNode(1)))
