@@ -13,14 +13,12 @@ class Solution:
         for time in range(t):
             for node,p in queue:
                 for child in graph[node]:
-                    if graph[node][child]==0:
-                        continue
+                    del graph[child][node]
                     if child==target:
                         if time==t-1 or len(graph[child])<1:
                             return p/len(graph[node])
                         else:
                             return 0.0
-                    graph[child][node]=0
                     next.append((child,p/len(graph[node])))
             queue=next
             next=[]
