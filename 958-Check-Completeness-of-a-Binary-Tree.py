@@ -32,3 +32,23 @@ class Solution:
         if flag:
             cnt+=1
         return cnt<2
+
+class Solution:
+    def isCompleteTree(self, root: TreeNode) -> bool:
+        # we can check this tree by checking the depth
+        self.ret=True
+        def depth(node,acc):
+            left=(acc,acc)
+            right=(acc,acc)
+            if node.left and self.ret:
+                left=depth(node.left,acc+1)
+            if node.right and self.ret:
+                right=depth(node.right,acc+1)
+            # atmost one difference
+            if left[0]!=left[1] and right[0]!=right[1]:
+                self.ret=False
+            elif left[0]<right[1]:
+                self.ret=False
+            return min(left[0],right[0]),max(left[1],right[1])
+        a,b=depth(root,0)
+        return self.ret and (b-a)<2
