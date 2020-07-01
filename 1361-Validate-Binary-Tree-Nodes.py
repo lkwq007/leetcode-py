@@ -5,7 +5,8 @@ class Solution:
         # the testing cases might not cover all test cases
         # we have to test the in degree 
         disjoint=[-1]*n
-        self.indegree=[0]*n
+        indegree=[0]*n
+        visited=[0]*n
         self.total=n
         def search(idx):
             tmp=idx
@@ -25,18 +26,19 @@ class Solution:
             disjoint[b_set]=a_set
             return True
         def dfs(idx):
-            if idx==-1:
+            if idx==-1 or visited[idx]:
                 return True
+            visited[idx]=1
             left=leftChild[idx]
             right=rightChild[idx]
             if left!=-1:
-                self.indegree[left]+=1
+                indegree[left]+=1
                 if union(idx,left):
                     self.total-=1
                 else:
                     return False
             if right!=-1:
-                self.indegree[right]+=1
+                indegree[right]+=1
                 if union(idx,right):
                     self.total-=1
                 else:
@@ -46,7 +48,10 @@ class Solution:
             if disjoint[idx]==-1:
                 if not dfs(idx):
                     return False
-        return all(map(lambda x:x==0 or x==1,self.indegree)) and sum(self.indegree)==n-1 and self.total==1
+        return all(map(lambda x:x==0 or x==1,indegree)) and sum(indegree)==n-1 and self.total==1
+
+x=Solution()
+print(x.validateBinaryTreeNodes(3,[1,-1,0],[-1,-1,-1]))
 
 class Solution:
     def validateBinaryTreeNodes(self, n: int, leftChild: List[int], rightChild: List[int]) -> bool:
