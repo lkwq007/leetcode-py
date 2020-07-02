@@ -1,23 +1,19 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        stack=[]
-        idx=0
-        total=len(s)
-        while idx<total:
-            item=s[idx]
-            if item.isdigit():
-                tmp=""
-                while s[idx].isdigit():
-                    tmp+=s[idx]
-                    idx+=1
-                num=int(tmp)
-            elif item=="(":
-                pass
-            elif item==")":
-                pass
-            elif item=="+":
-                
-            elif item=="-":
-                pass
-            else:
-                idx+=1
+        # note that all number are non-negative integers
+        self.pos=0
+        def white_space():
+            # we can also preposs the s
+            while s[self.pos]==" ":
+                self.pos+=1
+        def get_token():
+            white_space()
+            start=self.pos
+            while s[self.pos].isdigit():
+                self.pos+=1
+            end=self.pos
+            white_space()
+            return int(s[start:end])
+        def expr():
+            white_space()
+            
