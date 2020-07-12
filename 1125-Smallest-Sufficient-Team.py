@@ -102,6 +102,7 @@ class Solution:
                     acc|=item
                     del record[item]
                 record[acc]=acc_lst
+                continue
             keys=list(record.keys())
             for i in range(len(keys)):
                 set_a=keys[i]
