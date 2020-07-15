@@ -14,7 +14,7 @@ class Solution:
         for x in range(1,w-1):
             cur=matrix[0][x]
             for i in range(1,h):
-                if i>=w or y+i>=h:
+                if i>=h or x+i>=w:
                     break
                 if cur!=matrix[i][x+i]:
                     return False
