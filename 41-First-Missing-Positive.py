@@ -3,7 +3,7 @@ class Solution:
         total=len(nums)
         for i in range(len(nums)):
             if nums[i]<1:
-                nums[i]=
+                nums[i]=total+1
         for i in range(len(nums)):
             cur=nums[i]
             if cur>0:
