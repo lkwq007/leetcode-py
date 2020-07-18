@@ -6,10 +6,11 @@ class Solution:
         total=len(nums)
         idx=total-1
         start=idx
-        while idx>0:
-            if nums[idx-1]<nums[idx]:
-                nums[idx-1],nums[start]=nums[start],nums[idx-1]
-                return
-            idx-=1
+        for i in range(total-2,-1,-1):
+            for j in range(i+1,total):
+                if nums[j]<nums[i]:
+                    nums[i],nums[j]=nums[j],nums[i]
+                    nums[(j+1):]=sorted(nums[(j+1):])
+                    return
         nums.sort()
         return
