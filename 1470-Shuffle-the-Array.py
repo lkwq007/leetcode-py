@@ -1,9 +1,9 @@
 class Solution:
     def shuffle(self, nums: List[int], n: int) -> List[int]:
-        cur=0
-        ptr1=0
-        ptr2=n
-        total=2*n
-        while cur<total:
-            nums[cur]=nums[ptr1]
-            
+        return [nums[(i%2)*n+i//2] for i in range(n*2)]
+
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        # if it is possible to use two pointers?
+        pos=1
+        
