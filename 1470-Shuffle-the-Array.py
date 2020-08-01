@@ -4,6 +4,5 @@ class Solution:
 
 class Solution:
     def shuffle(self, nums: List[int], n: int) -> List[int]:
-        # if it is possible to use two pointers?
+        # TODO: if it is possible to use two pointers inplace?
         pos=1
-        
