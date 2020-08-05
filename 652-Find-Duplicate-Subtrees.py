@@ -18,7 +18,7 @@ class Solution:
                 left=dfs(node.left)
             if node.right:
                 right=dfs(node.right)
-            sig=left+"-"+str(node.val)+"-"+right
+            sig=str(node.val)+"-"+left+"-"+right
             if sig in self.record:
                 self.record[sig]=node
             else:
@@ -30,5 +30,3 @@ class Solution:
             if val:
                 ret.append(val)
         return ret
-                
-
