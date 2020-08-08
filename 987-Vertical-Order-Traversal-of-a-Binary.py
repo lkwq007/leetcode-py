@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
     def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
         # treat root as 0,0
