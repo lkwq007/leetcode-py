@@ -22,4 +22,6 @@ class Solution:
             ret.append(horizontal)
             ret.append(vertical)
             ret.append("!")
+            y=y1
+            x=x1
         return "".join(ret)
