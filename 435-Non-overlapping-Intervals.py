@@ -1,3 +1,19 @@
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        if len(intervals)<2:
+            return 0
+        intervals.sort(key=lambda x:(x[1],x[0]))
+        end=intervals[0][1]
+        cnt=1
+        for i in range(1,len(intervals)):
+            item=intervals[i]
+            if item[0]>=end:
+                cnt+=1
+                end=item[1]
+        return len(intervals)-cnt
+
+
+# TLE
 # class Solution:
 #     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
 #         # [start,end]: start<end
@@ -52,16 +68,3 @@
 #             cnt[max_key]=0
 #             del record[max_key]
 #         return removed
-class Solution:
-    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        if len(intervals)<2:
-            return 0
-        intervals.sort(key=lambda x:(x[1],x[0]))
-        end=intervals[0][1]
-        cnt=1
-        for i in range(1,len(intervals)):
-            item=intervals[i]
-            if item[0]>=end:
-                cnt+=1
-                end=item[1]
-        return len(intervals)-cnt
