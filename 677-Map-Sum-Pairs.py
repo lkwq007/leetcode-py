@@ -74,7 +74,6 @@ class MapSum:
             node=node.children[item]
             node.val+=delta
         node.endpoint=True
-        node.val=val
 
     def sum(self, prefix: str) -> int:
         node=self.root

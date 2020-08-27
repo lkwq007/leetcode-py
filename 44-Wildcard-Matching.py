@@ -50,8 +50,28 @@ class Solution:
             p_trim+=item
             last=item
         p=p_trim
-        # shortpath
-        
+        if p=="*":
+            return True
+        idx=0
+        while idx<len(s) and idx<len(p):
+            if p[idx].isalpha():
+                if s[idx]==p[idx]:
+                    idx+=1
+                else:
+                    return False
+            else:
+                break
+        end=-1
+        while -end<=len(s) and -end<=len(p):
+            if p[end].isalpha():
+                if p[end]==s[end]:
+                    end-=1
+                else:
+                    return False
+            else:
+                break
+        s=s[idx:end+len(s)]
+        p=p[idx:end+len(p)]
         def match(i,j):
             if i>=len(s) and j>=len(p):
                 return True
