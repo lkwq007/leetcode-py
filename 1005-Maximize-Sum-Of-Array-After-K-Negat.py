@@ -7,7 +7,7 @@ class Solution:
                 return sum(A)
             A[idx]=-A[idx]
             idx+=1
-        if idx>=K or (K-idx):
+        if idx>=K or (K-idx)%2==0:
             return sum(A)
         total=sum(A)
         if idx>=len(A):
