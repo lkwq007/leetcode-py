@@ -7,17 +7,12 @@ class Solution:
             if u not in graph:
                 graph[u]=[]
             graph[u].append((v,w))
+        d[K-1]=0
+        queue=[K]
+        while queue:
+                    
         self.ret=0
         self.total=0
-        def dfs(idx,tin):
-            visited[idx-1]=True
-            self.total+=1
-            self.ret=max(self.ret,tin)
-            lst=graph.get(idx,[])
-            for next,w in lst:
-                if not visited[next-1]:
-                    dfs(next,tin+w)
-        dfs(K,0)
         if self.total!=N:
             return -1
         return self.ret
