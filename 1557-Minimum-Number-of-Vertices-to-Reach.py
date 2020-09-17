@@ -16,8 +16,4 @@ class Solution:
         indegree=[0]*n
         for u,v in edges:
             indegree[v]+=1
-        ret=[]
-        for i in range(n):
-            if indegree[i]==0:
-                ret.append(i)
-        return ret
+        return [i for i in range(n) if indegree[i]==0]
