@@ -3,3 +3,4 @@ class Solution:
         # three pass, O(1) space
         row=[sum(item) for item in grid]
         col=[sum(item) for item in zip(grid)]
+        for 
