@@ -27,7 +27,6 @@ class Solution:
                 if 0<=y1<h and 0<=x1<w:
                     if acc==total and grid[y1][x1]==2:
                         self.ret+=1
-                        return
                     elif grid[y1][x1]==0:
                         dfs(y1,x1,acc+1)
             grid[y0][x0]=tmp
