@@ -1,3 +1,8 @@
+# we simply record each increment, and then evaluate them lazily
+# TODO: How about increment k element from the top of the stack?
+# it seems to be different with this problems,
+# however, it's actually a variant of this problems
+# we can apply `increment(total,val) and increment(total-k,-val)`
 class CustomStack:
 
     def __init__(self, maxSize: int):
