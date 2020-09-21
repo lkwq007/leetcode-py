@@ -7,14 +7,17 @@ class ProductOfNumbers:
         self.total=0
 
     def add(self, num: int) -> None:
-        if self.array[-1]==0:
-            self.array.append(num)
+        # deal with zero case
+        if num==0:
+            self.array=[0,1]
         else:
             self.array.append(num*self.array[-1])
-        # self.total+=1
+        self.total+=1
 
     def getProduct(self, k: int) -> int:
-        
+        if k>=len(self.array)-1 and self.array[0]==0:
+            return 0
+        return self.array[-1]//self.array[-1-k]
 
 
 # Your ProductOfNumbers object will be instantiated and called as such:
