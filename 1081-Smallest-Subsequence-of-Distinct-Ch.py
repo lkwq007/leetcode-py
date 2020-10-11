@@ -1,6 +1,7 @@
 class Solution:
-    def removeDuplicateLetters(self, s: str) -> str:
+    def smallestSubsequence(self, text: str) -> str:
         # only lowercase
+        s=text
         record={}
         for item in s:
             record[item]=record.get(item,0)+1
