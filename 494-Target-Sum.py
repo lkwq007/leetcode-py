@@ -1,9 +1,6 @@
-import functools
 class Solution:
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
         nums.sort()
-        self.ret=0
-        @functools.lru_cache(maxsize=None)
         def probe(i):
             if i==len(nums)-1:
                 return {nums[i]:1,-nums[i]:1} if nums[i]!=0 else {nums[i]:2}
