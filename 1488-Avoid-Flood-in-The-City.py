@@ -1,3 +1,4 @@
+# TODO： using binary search
 from collections import deque
 class Solution:
     def avoidFlood(self, rains: List[int]) -> List[int]:
