@@ -1,3 +1,4 @@
+import heapq
 class FreqStack:
 
     def __init__(self):
