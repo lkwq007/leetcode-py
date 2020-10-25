@@ -5,8 +5,8 @@ class Solution:
             if i==len(lst):
                 return ""
             cur=lst[i]
-            min_rest=min(lst[i:])
-            if cur<=min_rest:
+            tmp=int(lst[i]*(len(lst)-i))
+            if tmp<=int(lst[i:]):
                 return cur+probe(i+1)
             else:
                 return str(int(cur)-1)+"9"*(len(lst)-i-1)
