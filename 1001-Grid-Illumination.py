@@ -12,7 +12,7 @@ class Solution:
             col[x]=col.get(x,0)+1
             grid[(y,x)]=1
             diag[y-x]=diag.get(y-x,0)+1
-            rdiag[y+x-N]=diag.get(y+x-N,0)+1
+            rdiag[y+x-N]=rdiag.get(y+x-N,0)+1
         for i in range(len(queries)):
             y,x=queries[i]
             if row.get(y,0)>0 or col.get(x,0)>0 or diag.get(y-x,0) or rdiag.get(y+x-N,0)>0:
