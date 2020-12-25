@@ -15,7 +15,6 @@ class Solution:
                 idx+=1
         idx=len(houses)-1
         right=3e9
-        ret=right
         for pos,flag in reversed(lst):
             if flag:
                 right=pos

@@ -46,5 +46,5 @@ class Solution:
             ret[i]=key
             record[key]-=1
             if record[key]==0:
-                idx+=1 
-            
+                idx+=1
+        return ret
