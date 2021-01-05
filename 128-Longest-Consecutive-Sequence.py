@@ -31,3 +31,22 @@ class Solution:
             if item+1 in record:
                 union(record[item+1],idx)
         return -min(disjoint)
+
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums)<1:
+            return 0
+        record={}
+        for item in nums:
+            record[item]=1
+        def dfs(val):
+            if record.get(val,0)!=1:
+                return 0
+            record[val]=0
+            return 1+dfs(val-1)+dfs(val+1)
+        ret=0
+        for key in record.keys():
+            if record[key]==1:
+                ret=max(dfs(key),ret)
+        return ret
