@@ -4,4 +4,5 @@ class Solution:
         for i in range(R):
             for j in range(C):
                 ret.append([i,j])
-        ret.sort(key=lambda x:abs())
+        ret.sort(key=lambda x:abs(x[0]-r0)+abs(x[1]-c0))
+        return ret
