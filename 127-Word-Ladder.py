@@ -15,6 +15,9 @@ class Solution:
             for x,y in zip(a,b):
                 if x!=y:
                     cnt+=1
+                    # small optimization
+                    if cnt>1:
+                        return False
             return cnt==1
         while queue:
             target=[]
