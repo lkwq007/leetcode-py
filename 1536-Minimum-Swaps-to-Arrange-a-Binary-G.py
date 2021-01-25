@@ -4,3 +4,4 @@ class Solution:
         if n<2:
             return 0
         record={}
+        for 
