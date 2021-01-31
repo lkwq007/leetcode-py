@@ -3,14 +3,15 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        # simple
         total=len(nums)
         idx=total-1
         start=idx
-        for i in range(total-2,-1,-1):
-            for j in range(i+1,total):
-                if nums[j]<nums[i]:
+        for i in range(total-1,-1,-1):
+            for j in range(total-1,i,-1):
+                if nums[i]<nums[j]:
                     nums[i],nums[j]=nums[j],nums[i]
-                    nums[(j+1):]=sorted(nums[(j+1):])
+                    nums[(i+1):]=sorted(nums[(i+1):])
                     return
         nums.sort()
         return

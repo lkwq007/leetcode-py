@@ -14,8 +14,8 @@ class Solution:
             return 0
         for item in nums:
             if item%2==0:
-                while item>=key[-1]:
-                    record[item]
+                while item>=key[-1] and :
+                    
         ret=0
         for item in key:
             while True:
