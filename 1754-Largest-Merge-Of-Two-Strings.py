@@ -13,7 +13,9 @@ class Solution:
             elif word1[idx1:]>word2[idx2:]:
                 ret.append(word1[idx1])
                 idx1+=1
-
+            else:
+                ret.append(word2[idx2])
+                idx2+=1
         idx,word=(idx1,word1) if idx1<len(word1) else (idx2,word2)
         while idx<len(word):
             ret.append(word[idx])
