@@ -1,46 +1,64 @@
+class Solution:
+    def maxSumDivThree(self, nums: List[int]) -> int:
+        # DP
+        dp=[0]*3
+        for item in nums:
+            for val in dp[:]:
+                dp[(val+item)%3]=max(dp[(val+item)%3],val+item)
+        return dp[0]
+
+
 from collections import deque
 class Solution:
     def maxSumDivThree(self, nums: List[int]) -> int:
-        # all positive
-        nums.sort(key=lambda x:-x)
-        ret=0
-        queue1=deque([])
-        queue2=deque([])
+        # using deque without sorting
+        acc=0
+        queue1=deque([],maxlen=2)
+        queue2=deque([],maxlen=2)
         queue=[queue1,queue2]
+        ret=0
         for item in nums:
-            if item%3==0:
-                ret+=item
-            else:
+            acc+=item
+            if item%3!=0:
                 idx=item%3-1
-                if queue[1-idx]:
-                    top=queue[1-idx].popleft()
-                    ret+=item+top
-                else:
+                if len(queue[idx])<1 or item<=queue[idx][-1]:
                     queue[idx].append(item)
-                if len(queue[idx])==3:
-                    ret+=sum(queue[idx])
-                    queue[idx].clear()
+                elif len(queue[idx])<2 and item>=queue[idx][0]:
+                    queue[idx].appendleft(item)
+                elif item<=queue[idx][0]:
+                    queue[idx][0]=item
+            if acc%3==0:
+                ret=max(ret,acc)
+            else:
+                idx=acc%3-1
+                if len(queue[idx])>0:
+                    ret=max(ret,acc-min(queue[idx]))
+                if len(queue[1-idx])>1:
+                    ret=max(ret,acc-sum(queue[1-idx]))
         return ret
-                
 
+from collections import deque
+class Solution:
+    def maxSumDivThree(self, nums: List[int]) -> int:
+        # using deque with sorting
+        nums.sort(key=lambda x:-x)
+        acc=0
+        queue1=deque([],maxlen=2)
+        queue2=deque([],maxlen=2)
+        queue=[queue1,queue2]
+        ret=0
+        for item in nums:
+            acc+=item
+            if item%3!=0:
+                idx=item%3-1
+                queue[idx].append(item)
+            if acc%3==0:
+                ret=max(ret,acc)
+            else:
+                idx=acc%3-1
+                if len(queue[idx])>0:
+                    ret=max(ret,acc-min(queue[idx]))
+                if len(queue[1-idx])>1:
+                    ret=max(ret,acc-sum(queue[1-idx]))
+        return ret
 
-
-# class Solution:
-#     def maxSumDivThree(self, nums: List[int]) -> int:
-#         # all positive
-#         ret=0
-#         lst1=[]
-#         lst2=[]
-#         for item in nums:
-#             if item%3==0:
-#                 ret+=item
-#             elif item%3==1:
-#                 lst1.append(item)
-#             else:
-#                 lst2.append(item)
-#         if len(lst1)>0 and len(lst2)>0:
-#             lst1.sort(key=lambda x:-x)
-#             lst2.sort(key=lambda x:-x)
-#             total=min(len(lst1),len(lst2))
-#             return sum(lst1[:total])+sum(lst2[:total])+ret
-#         return ret
