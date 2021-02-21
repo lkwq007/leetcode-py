@@ -7,6 +7,17 @@ class Solution:
                 dp[(val+item)%3]=max(dp[(val+item)%3],val+item)
         return dp[0]
 
+class Solution:
+    def maxSumDivThree(self, nums: List[int]) -> int:
+        # DP
+        dp=[0]*3
+        target=[0]*3
+        for item in nums:
+            for i in range(3):
+                target[i]=dp[i]
+            for val in target:
+                dp[(val+item)%3]=max(dp[(val+item)%3],val+item)
+        return dp[0]
 
 from collections import deque
 class Solution:
