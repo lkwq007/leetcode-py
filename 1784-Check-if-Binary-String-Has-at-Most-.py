@@ -10,3 +10,7 @@ class Solution:
                 return False
             i+=1
         return True
+
+class Solution:
+    def checkOnesSegment(self, s: str) -> bool:
+        return "01" not in s
