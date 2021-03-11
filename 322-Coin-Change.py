@@ -3,7 +3,8 @@ class Solution:
         dp=[-1]*(amount+1)
         dp[0]=0
         for val in coins:
-            dp[val]=1
+            if val<len(dp):
+                dp[val]=1
         for i in range(1,amount+1):
             for val in coins:
                 if i-val>=0 and dp[i-val]!=-1:
