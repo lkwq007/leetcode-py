@@ -7,7 +7,10 @@ class Solution:
             freq=[0]*26
             freq[ord(s[i])-base]=1
             for j in range(i+1,total):
-                freq[ord(s[j]-base)]+=1
+                freq[ord(s[j])-base]+=1
+                ret+=max(freq)-min(x for x in freq if x>0)
+        return ret
+
 class Solution:
     def beautySum(self, s: str) -> int:
         ret=0
