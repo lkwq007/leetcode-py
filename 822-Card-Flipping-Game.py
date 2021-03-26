@@ -7,10 +7,7 @@ class Solution:
                 record[a]=1
         for a,b in zip(fronts,backs):
             if a not in record:
-                if ret==0:
-                    ret=a
-                else:
-                    ret=min(ret,a)
+                ret=min(ret,a) if ret>0 else a
             if b not in record:
                 ret=min(ret,b) if ret>0 else b
         return ret
