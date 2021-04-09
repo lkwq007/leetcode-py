@@ -4,4 +4,7 @@ class Solution:
         ret=0
         for act,req in tasks:
             if ret+act>=req:
-                
+                ret+=act
+            else:
+                ret=req
+        return ret
