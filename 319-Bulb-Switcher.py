@@ -1,5 +1,6 @@
 class Solution:
     def bulbSwitch(self, n: int) -> int:
         # prime numbers are off
-        # 
-        return 1
+        if n==0:
+            return 0
+        return n//2
