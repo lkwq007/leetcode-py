@@ -26,5 +26,5 @@ class Solution:
         val=(1<<maximumBit)-1
         for i in range(len(nums)):
             acc^=nums[i]
-            ret[len(nums)-1-i]=val^
+            ret[len(nums)-1-i]=val^acc
         return ret
