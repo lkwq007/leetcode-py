@@ -22,8 +22,6 @@ class WordFilter:
                     node.val.append(idx)
                 if item=="#":
                     flag=True
-            # node.flag=True
-            # node.val.append(idx)
         for idx,word in enumerate(words):
             for i in range(len(word)):
                 cur=word[i:]+"#"+word
