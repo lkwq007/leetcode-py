@@ -1,5 +1,26 @@
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
+        template=[False]*(len(s)+1)
+        dp=[template[:] for _ in range(len(p)+1)]
+        dp[0][0]=True
+        for i in range(len(p)):
+            if p[i]=="*":
+                for j in range(1+len(s)):
+                    dp[i+1][j]=dp[i][j]
+                for j in range(len(s)):
+                    dp[i+1][j+1]=dp[i+1][j+1] or dp[i+1][j]
+            else:
+                for j in range(len(s)):
+                    if p[i]=="?" or p[i]==s[j]:
+                        dp[i+1][j+1]=dp[i][j]
+        return dp[-1][-1]
+
+
+
+
+
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
         if s==p:
             return True
         p_trim=""
