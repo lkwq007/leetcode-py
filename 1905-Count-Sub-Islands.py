@@ -1,3 +1,4 @@
+# one dfs is enough, only need to dfs grid2 and check grid1
 class Solution:
     def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
         # two dfs
