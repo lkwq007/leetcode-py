@@ -14,4 +14,6 @@ class Solution:
             for i in range(1,f+1):
                 ret+=probe(total-i,idx+1)
                 ret%=term
+            return ret
+        return probe(target,0)
         
