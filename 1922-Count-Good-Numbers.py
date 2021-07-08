@@ -27,4 +27,25 @@ class Solution:
                     ret=(ret*base)%term
                 base=(base*base)%term
                 x=x>>1
+            return ret
         return (pow(5,even)*pow(4,odd))%term
+
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        # A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
+        even=5 if n%2 else 1
+        odd=n//2
+        term=10**9+7
+        def pow(base,x):
+            ret=1
+            while x>0:
+                if x&1:
+                    ret=(ret*base)%term
+                base=(base*base)%term
+                x=x>>1
+            return ret
+        return (pow(20,odd)*even)%term
+
+# class Solution:
+#     def countGoodNumbers(self, n: int) -> int:
+#         return pow(20,n//2,10**9+7)*(5**(n%2))%(10**9+7)
