@@ -24,6 +24,5 @@ class Solution:
         # bob min diff
         lcnt=left_mark
         rcnt=right_mark
-        step=0
-        for step in range(lcnt+rcnt):
-            
+        if left>right:
+            diff=left+(lcnt+1)//2
