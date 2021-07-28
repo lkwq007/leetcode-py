@@ -1,5 +1,6 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
+        # O(N^2*logN)
         nums.sort()
         ret=sum(nums[:3])
         for i in range(len(nums)):
@@ -22,3 +23,25 @@ class Solution:
                     if abs(ret-target)>abs(tmp-target):
                         ret=tmp
         return ret
+
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        # O(N^2)
+        nums.sort()
+        diff=target-sum(nums[:3])
+        for i in range(len(nums)-1):
+            item=nums[i]
+            lo=i+1
+            hi=len(nums)-1
+            while lo<hi:
+                cur=item+nums[lo]+nums[hi]
+                if abs(diff)>abs(target-cur):
+                    diff=target-cur
+                if cur<target:
+                    lo+=1
+                elif cur>target:
+                    hi-=1
+                else:
+                    return target
+        return target-diff
