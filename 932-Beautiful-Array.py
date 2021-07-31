@@ -1,19 +1,13 @@
 class Solution:
     def beautifulArray(self, n: int) -> List[int]:
-        if n<3:
-            return list(range(1,n+1))
-        # even + odd, then num can only appear in one part
-        lst=[]
-        for i in range(2,n+1,2):
-            if i%2==0:
-                lst.append(i)
-            else:
-                lst.insert(0,i)
-        lst2=[]
-        for i in range(1,n+1,2):
-            if i%2==0:
-                lst2.append(i)
-            else:
-                lst2.insert(0,i)
-        return lst+lst2
-
+        ret=[1]
+        while len(ret)<n:
+            lst=[]
+            for item in ret:
+                if item*2-1<=n:
+                    lst.append(item*2-1)
+            for item in lst:
+                if item*2<=n:
+                    lst.append(item*2)
+            ret=lst
+        return ret
