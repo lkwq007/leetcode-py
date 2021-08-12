@@ -9,3 +9,4 @@ class Solution:
                 idx=max(total,idx-total)
             else:
                 idx+=1
+        return s
