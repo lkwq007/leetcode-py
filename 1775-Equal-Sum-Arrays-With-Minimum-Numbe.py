@@ -21,14 +21,13 @@ class Solution:
             lst1,lst2=lst2,lst1
         diff=total1-total2
         ret=0
-        while diff>0:
-            for i in range(6,1,-1):
-                total=lst1[i]+lst2[7-i]
-                cur=i-1
-                if diff>total*cur:
-                    diff-=total*cur
-                    ret+=total
-                else:
-                    ret+=(diff+cur-1)//cur
-                    return ret
+        for i in range(6,1,-1):
+            total=lst1[i]+lst2[7-i]
+            cur=i-1
+            if diff>total*cur:
+                diff-=total*cur
+                ret+=total
+            else:
+                ret+=(diff+cur-1)//cur
+                break
         return ret
