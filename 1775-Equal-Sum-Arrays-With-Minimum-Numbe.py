@@ -6,12 +6,29 @@ class Solution:
             return -1
         lst1=[0]*7
         lst2=[0]*7
+        total1=0
+        total2=0
         for item in nums1:
             lst1[item]+=1
+            total1+=item
         for item in nums2:
             lst2[item]+=1
-        for i in range(7):
-            val=min(lst1[i],lst2[i])
-            lst1[i]-=val
-            lst2[i]-=val
-        return sum(lst1)
+            total2+=item
+        if total1==total2:
+            return 0
+        elif total2>total1:
+            total1,total2=total2,total1
+            lst1,lst2=lst2,lst1
+        diff=total1-total2
+        ret=0
+        while diff>0:
+            for i in range(6,1,-1):
+                total=lst1[i]+lst2[7-i]
+                cur=i-1
+                if diff>total*cur:
+                    diff-=total*cur
+                    ret+=total
+                else:
+                    ret+=(diff+cur-1)//cur
+                    return ret
+        return ret
