@@ -4,10 +4,16 @@ class Solution:
         while n>0:
             n=n//2
             cnt+=1
-        ret=1
+        ret=0
+        offset=1
         for i in range(cnt):
-            if cnt%2==0:
-                ret*=2
-            else:
-                ret+=1
+            ret*=2
+            ret+=offset
+            offset=1-offset
+        cur=1
+        lst=list(range(1,10))
+        next=[]
+        while len(lst)>2:
+            for item in lst:
+                
         return ret
