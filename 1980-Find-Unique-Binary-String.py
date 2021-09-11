@@ -17,3 +17,7 @@ class Solution:
                     pos-=1
                     i=i>>1
                 return "".join(ret)
+
+class Solution:
+    def findDifferentBinaryString(self, nums: List[str]) -> str:
+        return bin([i for i in range(17) if i not in set(map(lambda x:int(x,2),nums))][0])[2:].zfill(len(nums))
