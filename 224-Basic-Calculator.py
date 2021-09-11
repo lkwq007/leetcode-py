@@ -9,16 +9,25 @@ class Solution:
                 self.pos+=1
         def get_token():
             start=self.pos
+            sign=1
+            if self.pos<total and s[self.pos]=="-":
+                self.pos+=1
+                start+=1
+                sign=-1
             while self.pos<total and s[self.pos].isdigit():
                 self.pos+=1
             end=self.pos
             white_space()
-            return int(s[start:end])
+            return int(s[start:end])*sign
         def expr():
             op="+"
             acc=0
             flag=True
             white_space()
+            if self.pos<total and s[self.pos]=="-":
+                op="-"
+                self.pos+=1
+                white_space()
             while self.pos<total and s[self.pos]!=")":
                 if s[self.pos]=="(":
                     self.pos+=1
@@ -38,8 +47,5 @@ class Solution:
                     self.pos+=1
                     break
             white_space()
-            return item if flag else acc
+            return acc
         return expr()
-
-x=Solution()
-print(x.calculate("1 + 1"))
