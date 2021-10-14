@@ -38,6 +38,7 @@
 #         return squares(n,len(factor)-1)
 class Solution:
     def numSquares(self, n: int) -> int:
+        # TLE on 2021.10.14
         factor=[]
         i=1
         while i*i<=n:
@@ -67,3 +68,28 @@ class Solution:
         return squares(n,len(factor)-1)
 x=Solution()
 print(x.numSquares(1000))
+
+class Solution:
+    def numSquares(self, n: int) -> int:
+        factor=[]
+        i=1
+        while i*i<=n:
+            factor.append(i*i)
+            i+=1
+        if factor[-1]*factor[-1]==n:
+            return 1
+        dp=[-1]*(n+1)
+        for item in factor:
+            dp[item]=1
+        def probe(x):
+            if dp[x]>0:
+                return dp[x]
+            ret=x
+            for i in range(len(factor)):
+                if factor[i]<x:
+                    ret=min(ret,1+probe(x-factor[i]))
+                else:
+                    break
+            dp[x]=ret
+            return ret
+        return probe(n)
