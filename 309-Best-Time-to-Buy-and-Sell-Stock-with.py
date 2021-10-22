@@ -2,7 +2,12 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         if len(prices)<2:
             return 0
-        for item in prices:
+        dp=[0]*(len(prices)+2)
+        for i in range(len(prices)):
+            for j in range(i):
+                gain=prices[i]-prices[j]
+                dp[i]=max(dp[j],(gain+dp[j-2]),dp[i])
+        return dp[-3]    
             
 # class Solution:
 #     def maxProfit(self, prices: List[int]) -> int:

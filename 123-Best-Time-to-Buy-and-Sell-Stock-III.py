@@ -1,3 +1,16 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        ret=0
+        # once
+        acc=prices[0]
+        for i in range(1,len(prices)):
+            ret=max(prices[i]-acc,ret)
+            acc=min(acc,prices[i])
+        # twice
+        # 10^5, cannot N^2, so RMQ?
+        left_acc=prices[0]
+        for i in range(1,len(prices)-1):
+
 import functools
 class Solution:
     # TLE
