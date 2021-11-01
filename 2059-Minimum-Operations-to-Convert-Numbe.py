@@ -17,4 +17,3 @@ class Solution:
                                 target.append(next)
             queue=target
         return -1                            
-                        
