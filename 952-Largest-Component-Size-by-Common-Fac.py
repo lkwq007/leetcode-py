@@ -1,6 +1,6 @@
 class Solution:
     def largestComponentSize(self, A: List[int]) -> int:
-        self.ret=0
+        self.ret=-1 if len(A) else 0
         record={}
         disjoint=[-1]*len(A)
         def find(x):
