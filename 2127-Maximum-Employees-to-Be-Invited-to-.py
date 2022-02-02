@@ -18,4 +18,4 @@ class Solution:
                     acc+=1
                     x=favorite[x]
                 if visited[x][0]==step:
-
+                    record
