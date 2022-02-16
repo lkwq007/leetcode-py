@@ -13,6 +13,8 @@ class Solution:
             else:
                 sum_table[acc]=[idx]
             idx+=1
+        for key,val in sum_table.items():
+            sum_table[key]=val[::-1]
         idx=0
         cnt=0
         while idx<total:
@@ -21,8 +23,8 @@ class Solution:
                 cnt+=1
             next=val+k
             if next in sum_table:
-                for item in sum_table[next]:
-                    if item>idx:
-                        cnt+=1
+                while sum_table[next] and sum_table[next][-1]<=idx:
+                    sum_table[next].pop()
+                cnt+=len(sum_table[next])
             idx+=1
         return cnt
