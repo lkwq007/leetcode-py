@@ -12,6 +12,44 @@ class Solution:
                 record[r]=f
             record[r]=min(f,record[r])
         tires=[(v,k) for k,v in record.items()]
+        cost=[10**9]*numLaps
+        for i in range(len(tires)):
+            f,r=tires[i]
+            acc=f
+            last=f
+            cost[0]=min(f,cost[0])
+            for j in range(1,numLaps):
+                acc*=r
+                cur=last+acc
+                cost[j]=min(cur,cost[j])
+                last=cur
+                if cur>=(j+1)*(f+changeTime):
+                    break
+        dp=cost[:]
+        for i in range(1,numLaps):
+            acc=0
+            base=changeTime+dp[0]
+            for j in range(i-1,-1,-1):
+                acc+=base
+                if cost[i-j-1]>=acc:
+                    break
+                dp[i]=min(dp[i],dp[j]+cost[i-j-1]+changeTime)
+        return dp[-1]
+
+class Solution:
+    def minimumFinishTime(self, tires: List[List[int]], changeTime: int, numLaps: int) -> int:
+        record={}
+        for f,r in tires:
+            if f not in record:
+                record[f]=r
+            record[f]=min(r,record[f])
+        tires=[(k,v) for k,v in record.items()]
+        record={}
+        for f,r in tires:
+            if r not in record:
+                record[r]=f
+            record[r]=min(f,record[r])
+        tires=[(v,k) for k,v in record.items()]
         template=[10**9 for f,t in tires]
         tbl=[template[:] for _ in range(numLaps)]
         cost=[0]*numLaps

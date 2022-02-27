@@ -1,6 +1,5 @@
 class Solution:
     def minimumTime(self, time: List[int], totalTrips: int) -> int:
-        total=totalTrips
         left=min(time)
         right=left*totalTrips
         def check(t):
