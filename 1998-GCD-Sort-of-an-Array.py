@@ -11,8 +11,8 @@ class Solution:
             while j<len(plst) and plst[j]<=prime[i] and i*plst[j]<=total:
                 prime[i*plst[j]]=plst[j]
                 j+=1
-        disjoint=[-1]*len(plst)
-        group=[[] for _ in plst]
+        disjoint=[-1]*(len(prime)+1)
+        group=[[] for _ in disjoint]
         def find(x):
             ret=x
             while disjoint[ret]>=0:
@@ -33,40 +33,29 @@ class Solution:
         for i in range(len(nums)):
             head=None
             cur=nums[i]
-            for j in range(len(plst)):
-                p=plst[j]
+            for p in plst:
                 if p*p>cur:
                     break
                 if cur%p==0:
                     if head is None:
-                        head=j
+                        head=p
                         group[head].append(i)
                     else:
-                        union(head,j)
+                        union(head,p)
                 while cur%p==0:
                     cur=cur//p
             if cur>1:
-                group
-        # print(len(plst),plst)
-        for p in plst:
-            head=None
-            queue=list(range(len(nums)))
-            target=[]
-            for i in queue:
-                if nums[i]%p==0:
-                    if head is None:
-                        head=i
-                    # else:
-                        # union(head,i)
-                if nums[i]*nums[i]<=p:
-                    target.append(i)
-            queue=target
+                if head is None:
+                    group[cur].append(i)
+                else:
+                    union(head,cur)
         record={}
-        for i in range(len(nums)):
-            idx=find(i)
+        for p in plst:
+            idx=find(p)
             if idx not in record:
                 record[idx]=[]
-            record[idx].append(i)
+            for item in group[p]:
+                record[idx].append(item)
         for k,v in record.items():
             lst=[nums[i] for i in v]
             lst.sort()
