@@ -1,6 +1,19 @@
 class Solution:
     def subArrayRanges(self, nums: List[int]) -> int:
-        # The range of a subarray of nums is the difference between the largest and smallest element in the subarray.
         ret=0
-        # two pointer?
+        # O(N)?
+        return ret
+
+class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
+        ret=0
+        # brute force
+        for i in range(len(nums)):
+            minval=nums[i]
+            maxval=nums[i]
+            for j in range(i+1,len(nums)):
+                minval=min(minval,nums[j])
+                maxval=max(maxval,nums[j])
+                ret+=maxval-minval
+        return ret
         
