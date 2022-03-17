@@ -1,31 +1,41 @@
 class Solution:
     def oddEvenJumps(self, A: List[int]) -> int:
         if len(A)<2:
-            return 0
-        stack=[len(A)-1]
-        odd_jump=[-1]*len(A)
+            return len(A)
+        lst0=[(item,i) for i,item in enumerate(A)]
+        lst1=lst0[:]
+        lst0.sort()
+        lst1.sort(key=lambda x:(-x[0],x[1]))
+        # next greater
+        greater=[len(A)-1]*len(A)
+        smaller=greater[:]
+        stack=[]
+        for i in range(len(A)-1,-1,-1):
+            val,idx=lst0[i]
+            while stack and idx>lst0[stack[-1]][1]:
+                stack.pop()
+            if stack:
+                greater[idx]=lst0[stack[-1]][1]
+            else:
+                greater[idx]=-1
+            stack.append(i)
+        stack=[]
+        for i in range(len(A)-1,-1,-1):
+            val,idx=lst1[i]
+            while stack and idx>lst1[stack[-1]][1]:
+                stack.pop()
+            if stack:
+                smaller[idx]=lst1[stack[-1]][1]
+            else:
+                smaller[idx]=-1
+            stack.append(i)
+        dp=[0]*len(A)
+        dp[-1]=1
+        even=dp[:]
+        odd=dp[:]
         for i in range(len(A)-2,-1,-1):
-            while stack and A[i]>A[stack[-1]]:
-                stack.pop()
-            if stack:
-                odd_jump[i]=stack[-1]
-            stack.append(i)
-        stack=[0]
-        even_jump=[-1]*len(A)
-        for i in range(2,len(A)):
-            while stack and A[i]<A[stack[-1]]:
-                stack.pop()
-            if stack:
-                even_jump[i]=stack[-1]
-            stack.append(i)
-        can_reach=[False]*len(A)
-        odd_visited=[False]*len(A)
-        even_visited=[False]*len(A)
-        jumps=[odd_jump,even_jump]
-        visited=[odd_visited,even_visited]
-        last=len(A)-1
-        print(odd_jump)
-        print(even_jump)                                  
-        for i in range(len(A)):
-            pass
-        return 0
+            if greater[i]!=-1:
+                odd[i]=even[greater[i]]
+            if smaller[i]!=-1:
+                even[i]=odd[smaller[i]]
+        return sum(odd)
