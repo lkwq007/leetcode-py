@@ -14,7 +14,7 @@ class MyCalendarThree:
                 acc+=1
             ret=max(ret,self.log[i][-1])
         self.log.append([start,end,acc])
-        return max(acc,ret)
+        return max(ret,acc)
 
 # Your MyCalendarThree object will be instantiated and called as such:
 # obj = MyCalendarThree()
