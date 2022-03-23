@@ -7,46 +7,61 @@ class Robot:
         self.h=height
         self.dir=0
         self.mapping=["East", "North", "West", "South"]
+        self.acc=0
 
     def step(self, num: int) -> None:
-        # 1 <= num <= 10^5, oh that's tedious
-        lm=self.x
-        rm=self.w-self.x-1
-        tm=self.h-self.y-1
-        bm=self.y
-        if self.dir==0:
-            if num<=rm:
-                self.x+=num
+        self.acc+=num
+        if (self.x,self.y)==(0,0):
+            self.dir=3
+    
+    def process(self):
+        acc=self.acc
+        self.acc=0
+        acc=acc%((self.w+self.h-2)*2)
+        def local_step(num):
+            lm=self.x
+            rm=self.w-self.x-1
+            tm=self.h-self.y-1
+            bm=self.y
+            if self.dir==0:
+                if num<=rm:
+                    self.x+=num
+                else:
+                    self.x+=rm
+                    self.dir+=1
+                    local_step(num-rm)
+            elif self.dir==1:
+                if num<=tm:
+                    self.y+=num
+                else:
+                    self.y+=tm
+                    self.dir+=1
+                    local_step(num-tm)
+            elif self.dir==2:
+                if num<=lm:
+                    self.x-=num
+                else:
+                    self.x-=lm
+                    self.dir+=1
+                    local_step(num-lm)
             else:
-                self.x+=rm
-                self.dir+=1
-                self.step(num-rm)
-        elif self.dir==1:
-            if num<=tm:
-                self.y+=num
-            else:
-                self.y+=tm
-                self.dir+=1
-                self.step(num-tm)
-        elif self.dir==2:
-            if num<=lm:
-                self.x-=num
-            else:
-                self.x-=lm
-                self.dir+=1
-                self.step(num-lm)
-        else:
-            if num<=bm:
-                self.y-=num
-            else:
-                self.y-=bm
-                self.dir=0
-                self.step(num-bm)
+                if num<=bm:
+                    self.y-=num
+                else:
+                    self.y-=bm
+                    self.dir=0
+                    local_step(num-bm)
+        local_step(acc)
+
 
     def getPos(self) -> List[int]:
+        if self.acc!=0:
+            self.process()
         return [self.x,self.y]
 
     def getDir(self) -> str:
+        if self.acc!=0:
+            self.process()
         return self.mapping[self.dir]
 
 
