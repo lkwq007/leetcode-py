@@ -24,7 +24,11 @@ class Encrypter:
             self.mapping[v].append(k)
         for word in dictionary:
             node_lst=[self.root]
+            flag=True
             for c in word:
+                if c not in self.mapping:
+                    flag=False
+                    break
                 cur=self.mapping[c]
                 lst=self.mapping[cur]
                 target=set([])
@@ -36,9 +40,10 @@ class Encrypter:
                             node.child[item]=tmp
                         target.add(node.child[item])
                 node_lst=list(target)
-            for node in node_lst:
-                node.end=True
-                node.cnt+=1
+            if flag:
+                for node in node_lst:
+                    node.end=True
+                    node.cnt+=1
 
     def encrypt(self, word1: str) -> str:
         ret=[]
