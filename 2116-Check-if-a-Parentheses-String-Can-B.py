@@ -2,27 +2,31 @@ class Solution:
     def canBeValid(self, s: str, locked: str) -> bool:
         if len(s)%2:
             return False
-        stack=[]
+        nest=[]
+        free=[]
+        lst=[0]*len(s)
         for i in range(len(s)):
-            if locked[i]=="1":
-                if s[i]=="(":
-                    stack.append((s[i],locked[i]))
-                else:
-                    if len(stack)==0 or stack[-1]==(")","1"):
-                        return False
-                    elif stack[-1]==("(","1"):
-                        stack.pop()
+            if locked[i]=="0":
+                free.append(i)
+            elif s[i]=="(":
+                nest.append(i)
+            elif (len(nest)+len(free))==0:
+                return False
+            elif nest:
+                idx=nest.pop()
+                lst[idx]=1
+                lst[i]=1
             else:
-                if len(stack)==0:
-                    stack.append(("(","1"))
-                else:
-                    stack.append(("*","0"))
-        acc=0
-        for i in range(len(stack)-1,-1,-1):
-            if stack[i][1]=="0":
-                acc+=1
-            else:
-                if acc==0:
+                idx=free.pop()
+                lst[idx]=1
+                lst[i]=1
+        cnt=0
+        for i in range(len(lst)-1,-1,-1):
+            if lst[i]==0:
+                if locked[i]=="0":
+                    cnt+=1
+                elif cnt==0:
                     return False
-                acc-=1
+                else:
+                    cnt-=1
         return True
