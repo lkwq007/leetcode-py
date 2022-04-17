@@ -1,5 +1,11 @@
 class Solution:
     def numberOfCombinations(self, num: str) -> int:
+        # suffix?
+        dp=[[0]*(len(num)+1) for _ in range(len(num)+1)]
+        
+
+class Solution:
+    def numberOfCombinations(self, num: str) -> int:
         # TLE
         term=10**9+7
         if num[0]=="0":
