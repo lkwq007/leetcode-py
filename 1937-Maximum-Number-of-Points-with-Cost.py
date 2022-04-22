@@ -1,6 +1,6 @@
 class Solution:
     def maxPoints(self, points: List[List[int]]) -> int:
-        # brute force
+        # brute force, TLE
         dp=points[0][:]
         ret=max(dp)
         h=len(points)
@@ -19,5 +19,22 @@ class Solution:
                             max_idx=i
                 target[x]=points[y][x]+dp[max_idx]-abs(max_idx-x)
                 ret=max(ret,target[x])
+            dp,target=target,dp
+        return ret
+
+class Solution:
+    def maxPoints(self, points: List[List[int]]) -> int:
+        # brute force, TLE
+        dp=points[0][:]
+        ret=max(dp)
+        h=len(points)
+        w=len(points[0])
+        target=[0]*w
+        for y in range(1,h):
+            for x in range(w):
+                target[x]=-w
+                for i in range(w):
+                    target[x]=max(target[x],points[y][x]+dp[i]-abs(i-x))
+                ret=max(target[x],ret)
             dp,target=target,dp
         return ret
