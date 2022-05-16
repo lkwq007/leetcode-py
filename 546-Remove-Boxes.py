@@ -1,6 +1,6 @@
 class Solution:
     def removeBoxes(self, boxes: List[int]) -> int:
-        # TLE
+        # 1 <= boxes.length <= 100
         cnt=1
         last=-1
         lst=[]
@@ -12,16 +12,26 @@ class Solution:
                 cnt=1
             last=item
         lst.append((last,cnt))
-        ret=0
-        dp=[[0]*100 for _ in range(100)]
-        for i in range(1,len(lst)):
-            for j in range(len(lst)):
-                for k in range(j,min(j+i,len(lst))):
-                    if j==k:
-                        dp[j][k]=lst[j][1]*lst[j][1]
-                    
+        import functools
+        @functools.lru_cache(maxsize=None)
+        def probe(start,end):
+            if start==end:
+                return lst[start][1]*lst[start][1]
+            if start>end:
+                return 0
+            cur,acc=lst[start]
+            idx=start+1
+            ret=0
+            other=0
+            while idx<=end:
+                ret=max(ret,acc*acc+other+probe(idx,end))
+                if cur==lst[idx][0]:
+                    acc+=
+                    ret=max(ret,)
 
 
+        return probe(0,len(lst)-1)
+                
 class Solution:
     def removeBoxes(self, boxes: List[int]) -> int:
         # TLE
