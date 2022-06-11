@@ -16,7 +16,6 @@ class BookMyShow:
                 right=self.tree[v*2+1]
                 self.tree[v]=[left[0]+right[0],max(left[1],right[1])]
         build(1,0,n-1)
-        print(self.tree)
 
     def push(self,v):
         if self.mark[v]:
@@ -64,7 +63,6 @@ class BookMyShow:
             
 
     def query(self,v,tl,tr,l,r):
-        # print(v,tl,tr,l,r)
         if l>r:
             return [0,0]
         if tl==l and tr==r:
