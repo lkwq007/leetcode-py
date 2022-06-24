@@ -18,8 +18,11 @@ class Solution:
             if cur<1 or rest<1:
                 return False
             cur=total%rest
+            if cur==0:
+                cur=rest
             next=-queue[0]
             total=rest+cur
             cnt+=1
             heapq.heappush(queue,-cur)
+            # print(queue)
         return True

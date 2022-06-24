@@ -31,3 +31,20 @@ class Solution:
                     # print(cur)
                     ret=min(ret,cur)
         return ret
+
+class Solution:
+    def minFlips(self, s: str) -> int:
+        val0=0
+        lst=[[0]*(len(s)+1),[0]*(len(s)+1)]
+        for i in range(len(s)):
+            lst[1][i]=int(int(s[i])==val0)+lst[1][i-1]
+            lst[0][i]=int(int(s[i])!=val0)+lst[0][i-1]
+            val0=1-val0
+        ret=min(lst[0][-2],lst[1][-2])
+        if len(s)%2:
+            for i in range(len(s)-1):
+                if s[i]==s[i+1]:
+                    val=(i%2)^(int(s[i]))
+                    cur=lst[val][i]+lst[1-val][len(s)-1]-lst[1-val][i]
+                    ret=min(ret,cur)
+        return ret
