@@ -1,19 +1,22 @@
 class Solution:
     def lastRemaining(self, n: int) -> int:
-        cnt=0
-        while n>0:
-            n=n//2
-            cnt+=1
-        ret=0
-        offset=1
-        for i in range(cnt):
-            ret*=2
-            ret+=offset
-            offset=1-offset
-        cur=1
-        lst=list(range(1,10))
-        next=[]
-        while len(lst)>2:
-            for item in lst:
-                
-        return ret
+        if n==1:
+            return 1
+        # assume 0 - (n-1)
+        end=n-1
+        lst=[]
+        step=0
+        while end>1:
+            if step&1:
+                # tail
+                lst.append(end&1)
+            else:
+                # head
+                lst.append(1)
+            end=end>>1
+        acc=0
+        lst.append(end)
+        print(lst[::-1])
+        for item in lst[::-1]:
+            acc=acc*2+item
+        return acc+1
