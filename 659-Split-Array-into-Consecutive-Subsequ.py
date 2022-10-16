@@ -6,11 +6,6 @@ class Solution:
         keys=list(record.keys())
         keys.sort()
         for key in keys:
-            for i in range(record[key]):
-                cur=key
-                while record.get(cur,0)>0:
-                    record[cur]-=1
-                    cur+=1
-                if cur-key+1<3:
-                    return False
+            cur=record[key]
+            if record.get(key-2,0)+record.get(key+2,0)<cur
         return True
