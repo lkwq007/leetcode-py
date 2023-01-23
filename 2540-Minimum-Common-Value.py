@@ -9,3 +9,4 @@ class Solution:
                 idx0+=1
             else:
                 idx1+=1
+        return -1
