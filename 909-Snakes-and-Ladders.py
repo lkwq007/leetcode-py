@@ -31,8 +31,6 @@ class Solution:
                         if next==goal:
                             return step
                         board[y][x]=0
-                        y,x=get_pos(next)
-                        if board[y][x]!=0:
-                            target.append(next)
+                        target.append(next)
             queue=target
         return -1
