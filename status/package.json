@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "badge-maker": "^3.1.0",
-    "got": "^11.3.0"
+    "got": "^12.5.3"
   }
 }
