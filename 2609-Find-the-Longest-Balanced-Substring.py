@@ -15,4 +15,4 @@ class Solution:
                 cnt+=1
                 cnt=min(old_acc,cnt)
             ret=max(cnt,ret)
-        return ret
+        return ret*2
