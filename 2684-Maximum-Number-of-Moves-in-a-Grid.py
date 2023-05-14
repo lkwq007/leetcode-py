@@ -14,3 +14,5 @@ class Solution:
                     if grid[y][x]<grid[next][x+1] and (next,x+1) not in record:
                         record[(next,x+1)]=1
                         target.append((next,x+1))
+            queue=target
+        return ret
