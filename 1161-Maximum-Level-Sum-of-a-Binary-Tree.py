@@ -11,7 +11,7 @@ class Solution:
         queue=[(root,1)]
         idx=0
         acc=0
-        ret=0
+        ret=1
         last=1
         max_val=root.val
         while idx<len(queue):
